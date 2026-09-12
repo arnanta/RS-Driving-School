@@ -356,14 +356,6 @@ p { color: var(--ink-soft); max-width: 62ch; }
    the car itself always reads bright — same viewBox as the road so the
    two line up. */
 .hero-car-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-@media (max-width: 979px) {
-  /* Mobile stacks hero-copy full-width above the dial card, so there's no
-     spare right-hand column for the car to travel through without crossing
-     body text. Confine it to a band near the bottom of the hero instead —
-     the same viewBox math then keeps its full path on-screen there,
-     roughly level with the ratings card, clear of the paragraph above. */
-  .hero-car-layer { inset: auto 0 0 0; top: auto; height: 260px; }
-}
 .hero-car {
   transform-box: fill-box;
   transform-origin: center;
@@ -379,6 +371,65 @@ p { color: var(--ink-soft); max-width: 62ch; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-car { animation: none; opacity: 1; transform: translate(483px, 244px) scale(0.95); }
+}
+
+/* Mobile: the "drives toward camera" perspective needs a spare column to
+   travel through without crossing body text, which the stacked mobile
+   layout doesn't have. Swap it for a plain left-to-right drive-by instead,
+   confined to the hero's own bottom padding — an always-empty strip no
+   matter how tall the stacked content above it gets. */
+@media (min-width: 980px) { .hero-car-mobile-track { display: none; } }
+@media (max-width: 979px) {
+  .hero-car-layer { display: none; }
+  .hero-car-mobile-track {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 14px;
+    height: 18px;
+    pointer-events: none;
+  }
+}
+.hero-car-mobile {
+  position: absolute;
+  top: 0;
+  left: -46px;
+  width: 40px;
+  height: 18px;
+  border-radius: 7px;
+  background: var(--asphalt-ink);
+  box-shadow: 0 0 0 1px rgba(20, 24, 26, 0.4);
+  animation: hero-drive-h 5.5s linear infinite;
+}
+.hero-car-mobile::before {
+  content: '';
+  position: absolute;
+  right: -3px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--amber-500);
+  box-shadow: 0 0 7px 1px var(--amber-500);
+  transform: translateY(-50%);
+}
+.hero-car-mobile::after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: 50%;
+  width: 3px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--signal-red);
+  transform: translateY(-50%);
+}
+@keyframes hero-drive-h {
+  from { left: -46px; }
+  to { left: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-car-mobile { animation: none; left: 50%; }
 }
 
 .hero .container { position: relative; display: grid; gap: 40px; }

@@ -57,6 +57,9 @@ export default function Hero() {
       <RoadBackdrop />
       <div className="hero-scrim" aria-hidden="true" />
       <HeroCarLayer />
+      <div className="hero-car-mobile-track" aria-hidden="true">
+        <div className="hero-car-mobile" />
+      </div>
       <div className="hero-glow" aria-hidden="true" />
       <div className="container">
         <div className="hero-copy">
