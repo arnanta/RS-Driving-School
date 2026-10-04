@@ -216,6 +216,8 @@ p { color: var(--ink-soft); max-width: 62ch; }
 .btn-ghost:hover { border-color: var(--ink); }
 .btn-whatsapp { background: #fff; color: var(--green-900); border: 1.5px solid var(--green-500); }
 .btn-whatsapp:hover { background: var(--green-200); }
+.btn-light { background: #fff; color: var(--asphalt); }
+.btn-light:hover { background: var(--green-200); }
 @media (prefers-color-scheme: dark) { .btn-whatsapp { color: var(--green-500); background: transparent; } }
 :root[data-theme='dark'] .btn-whatsapp { color: var(--green-500); background: transparent; }
 :root[data-theme='light'] .btn-whatsapp { color: var(--green-900); background: #fff; }
@@ -450,6 +452,9 @@ p { color: var(--ink-soft); max-width: 62ch; }
 .hero h1 em { font-style: normal; color: var(--green-500); }
 .hero .lede { color: var(--asphalt-muted); max-width: 52ch; }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+.hero-checks { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 14px; color: var(--asphalt-ink); font-size: 0.92rem; font-weight: 500; }
+.hero-checks li { display: flex; align-items: center; gap: 6px; }
+.hero-checks svg { color: var(--amber-300); flex-shrink: 0; }
 .hero-stats { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 14px; }
 .hero-stat { display: flex; flex-direction: column; }
 .hero-stat b { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 600; color: var(--asphalt-ink); font-variant-numeric: tabular-nums; }
@@ -558,6 +563,8 @@ p { color: var(--ink-soft); max-width: 62ch; }
 .contact-line a, .contact-line span { color: var(--asphalt-ink); font-size: 0.95rem; }
 .contact-line small { display: block; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--asphalt-muted); margin-bottom: 3px; }
 .contact-hours { border-top: 1px dashed var(--asphalt-line); padding-top: 18px; display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--asphalt-muted); }
+.contact-hours span { display: inline-flex; align-items: center; gap: 8px; }
+.contact-hours svg { flex-shrink: 0; }
 .contact-hours b { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--asphalt-ink); }
 
 .form-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px; }
@@ -593,12 +600,56 @@ p { color: var(--ink-soft); max-width: 62ch; }
 @media (min-width: 720px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
 
 /* ---------- Sticky mobile action bar ---------- */
-.mobile-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 100; display: grid; grid-template-columns: 1fr 1fr; background: var(--surface); border-top: 1px solid var(--line); box-shadow: 0 -8px 24px rgba(20,24,26,0.12); padding-bottom: env(safe-area-inset-bottom); }
+.mobile-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 100; display: grid; grid-template-columns: repeat(3, 1fr); background: var(--surface); border-top: 1px solid var(--line); box-shadow: 0 -8px 24px rgba(20,24,26,0.12); padding-bottom: env(safe-area-inset-bottom); }
 .mobile-bar a { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 10px; font-family: var(--font-display); font-weight: 600; text-transform: uppercase; font-size: 0.86rem; letter-spacing: 0.03em; }
 .mobile-bar a:first-child { background: var(--asphalt); color: var(--asphalt-ink); }
-.mobile-bar a:last-child { background: var(--green-700); color: #fff; }
+.mobile-bar a:nth-child(2) { background: var(--green-700); color: #fff; }
+.mobile-bar a:last-child { background: var(--amber-500); color: var(--asphalt); }
 .mobile-bar svg { width: 18px; height: 18px; }
 @media (min-width: 900px) { .mobile-bar { display: none; } }
+
+/* ---------- Header actions / floating WhatsApp ---------- */
+.header-wa { display: none; }
+@media (min-width: 900px) { .header-wa { display: inline-flex; } }
+.wa-float { display: none; }
+@media (min-width: 900px) {
+  .wa-float { position: fixed; right: 24px; bottom: 24px; z-index: 100; display: inline-flex; align-items: center; gap: 8px; padding: 14px 20px; border-radius: 999px; background: var(--green-700); color: #fff; font-weight: 600; box-shadow: var(--shadow-lg); transition: background 0.2s var(--ease), transform 0.2s var(--ease); }
+  .wa-float:hover { background: var(--green-500); transform: translateY(-2px); }
+}
+
+/* ---------- Service cards (extras) ---------- */
+.service-tagline { font-weight: 600; color: var(--green-700); font-size: 0.92rem; }
+.service-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); }
+.service-price { font-size: 0.85rem; color: var(--ink-faint); }
+.service-price b { font-family: var(--font-mono); font-size: 1.05rem; color: var(--ink); }
+.service-link { font-weight: 600; font-size: 0.88rem; color: var(--green-700); }
+.service-link:hover { text-decoration: underline; }
+.licence-note { display: flex; gap: 14px; align-items: flex-start; margin-top: 24px; padding: 18px 22px; border: 1px dashed var(--line-strong); border-radius: var(--radius-md); font-size: 0.92rem; }
+.licence-note svg { flex-shrink: 0; color: var(--green-700); margin-top: 2px; }
+
+/* ---------- How it works ---------- */
+.steps { display: grid; gap: 16px; grid-template-columns: 1fr; margin: 0; padding: 0; list-style: none; }
+@media (min-width: 640px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+.step { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 24px 22px; }
+.step-num { display: block; font-family: var(--font-mono); font-weight: 600; font-size: 1.6rem; color: var(--green-700); margin-bottom: 8px; }
+.step h3 { text-transform: none; margin-bottom: 6px; }
+.step p { font-size: 0.92rem; }
+.steps-cta { margin-top: 32px; display: flex; justify-content: center; }
+
+/* ---------- Pricing help ---------- */
+.pricing-help { margin-top: 18px; text-align: center; font-size: 0.95rem; }
+.pricing-help a { font-weight: 600; color: var(--green-700); }
+.pricing-help a:hover { text-decoration: underline; }
+
+/* ---------- FAQ ---------- */
+.faq-wrap { max-width: 800px; }
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-item summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 4px; font-weight: 600; min-height: 44px; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; font-family: var(--font-mono); font-size: 1.3rem; color: var(--green-700); transition: transform 0.2s var(--ease); }
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item p { padding: 0 4px 18px; max-width: 64ch; }
 
 /* ---------- Utility ---------- */
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

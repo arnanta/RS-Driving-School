@@ -1,11 +1,13 @@
 import { whyChooseUs } from '../data.js'
-import { IconInstructor, IconShield, IconLicence, IconTag } from './icons.jsx'
+import { IconInstructor, IconShield, IconLicence, IconTag, IconVehicle, IconClock } from './icons.jsx'
 
 const ICONS = {
   instructor: IconInstructor,
   shield: IconShield,
   licence: IconLicence,
   tag: IconTag,
+  vehicle: IconVehicle,
+  clock: IconClock,
 }
 
 export default function WhyChooseUs() {
@@ -14,9 +16,9 @@ export default function WhyChooseUs() {
       <div className="container">
         <div className="section-head">
           <span className="eyebrow">Why RS</span>
-          <h2>Why families choose RS</h2>
+          <h2>Why choose RS Driving School?</h2>
           <p className="lede">
-            Four things that come up again and again in Google reviews — not a features list we
+            Six things that come up again and again in Google reviews — not a features list we
             wrote ourselves.
           </p>
         </div>

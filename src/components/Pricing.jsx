@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { pricing } from '../data.js'
+import { useEffect, useState } from 'react'
+import { pricing, whatsappLink } from '../data.js'
 import { IconCheck } from './icons.jsx'
 
 const TABS = ['car', 'bike', 'scooty']
@@ -7,6 +7,12 @@ const TABS = ['car', 'bike', 'scooty']
 export default function Pricing() {
   const [tab, setTab] = useState('car')
   const active = pricing[tab]
+
+  useEffect(() => {
+    const onSelect = (e) => TABS.includes(e.detail) && setTab(e.detail)
+    window.addEventListener('rs:select-vehicle', onSelect)
+    return () => window.removeEventListener('rs:select-vehicle', onSelect)
+  }, [])
 
   return (
     <section className="section section-alt" id="pricing">
@@ -69,6 +75,13 @@ export default function Pricing() {
               <b>{addOn.label}</b> — {addOn.value}
             </span>
           ))}
+        </p>
+
+        <p className="pricing-help">
+          Not sure which package is right for you?{' '}
+          <a href={whatsappLink('Hi RS Driving School, can you help me choose the right package?')} target="_blank" rel="noreferrer">
+            WhatsApp us →
+          </a>
         </p>
       </div>
     </section>

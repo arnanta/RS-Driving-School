@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { business, nav } from '../data.js'
+import { business, nav, whatsappLink, enquiryText } from '../data.js'
 import { IconPhone, IconWhatsapp } from './icons.jsx'
 
 function BrandMark() {
@@ -61,8 +61,11 @@ export default function Header() {
           </nav>
 
           <div className="header-actions">
+            <a className="btn btn-whatsapp btn-sm header-wa" href={whatsappLink(enquiryText)} target="_blank" rel="noreferrer">
+              <IconWhatsapp width="16" height="16" /> WhatsApp
+            </a>
             <a className="btn btn-primary btn-sm" href={`tel:+91${business.phonePrimary}`}>
-              <IconPhone width="16" height="16" /> Call Now
+              <IconPhone width="16" height="16" /> Call {business.phonePrimary}
             </a>
             <button
               type="button"
@@ -88,7 +91,7 @@ export default function Header() {
         </a>
         <a
           className="btn btn-whatsapp btn-block"
-          href={`https://wa.me/${business.whatsapp}`}
+          href={whatsappLink(enquiryText)}
           target="_blank"
           rel="noreferrer"
           onClick={closeMenu}

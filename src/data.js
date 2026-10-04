@@ -10,7 +10,7 @@ export const business = {
   whatsapp: '918240549507',
   location: 'Near Jayshree Post Office, Kolkata',
   hoursLabel: 'Mon – Sun',
-  hoursValue: '7:00 – 20:00',
+  hoursValue: '6:00 – 5:00',
   rating: 5.0,
 }
 
@@ -24,25 +24,31 @@ export const trustPoints = [
 export const services = [
   {
     icon: 'car',
-    title: 'Car Training',
-    body: '15–18 classes, 4 km of real road per class, with optional AC vehicle and endorsement support.',
-  },
-  {
-    icon: 'bike',
-    title: 'Bike Training',
-    body: '12 classes of 30 minutes, three days a week, building balance and control from the ground up.',
+    vehicle: 'car',
+    title: 'Car Driving',
+    tagline: 'Beginner to confident driver',
+    body: '15–18 classes with 4 km of real road per class, plus traffic and parking practice. Optional AC vehicle.',
   },
   {
     icon: 'scooty',
+    vehicle: 'scooty',
     title: 'Scooty Training',
-    body: 'The same patient, step-by-step method as bike training, sized for scooty handling and traffic.',
+    tagline: 'Perfect for first-time riders',
+    body: '12 half-hour classes covering low-speed handling and traffic basics, three days a week.',
   },
   {
-    icon: 'licence',
-    title: 'Licence Assistance',
-    body: 'Learner’s and permanent licence paperwork handled alongside your lessons — one less queue to stand in.',
+    icon: 'bike',
+    vehicle: 'bike',
+    title: 'Bike Training',
+    tagline: 'Build balance and road awareness',
+    body: '12 half-hour classes building balance and control from the ground up, then road practice.',
   },
 ]
+
+export const licenceService = {
+  title: 'Licence assistance, included in the Complete packages',
+  body: 'Learner’s and permanent licence paperwork is handled alongside your lessons — one less queue to stand in.',
+}
 
 export const pricing = {
   car: {
@@ -189,12 +195,59 @@ export const reviews = [
 ]
 
 export const nav = [
-  { href: '#services', label: 'Services' },
+  { href: '#services', label: 'Courses' },
   { href: '#pricing', label: 'Pricing' },
-  { href: '#about', label: 'Instructor' },
+  { href: '#about', label: 'About' },
   { href: '#reviews', label: 'Reviews' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#faq', label: 'FAQ' },
 ]
+
+export const heroChecks = ['Beginner friendly', 'One-to-one lessons', 'Licence paperwork handled']
+
+export const steps = [
+  { title: 'Contact us', body: 'Call or WhatsApp and tell us what you want to learn.' },
+  { title: 'Choose your package', body: 'Pick the car, bike or scooty plan that suits you — prices are listed up front.' },
+  { title: 'Start training', body: 'Learn one-to-one with your instructor, at your own pace.' },
+  { title: 'Drive with confidence', body: 'Build real road experience and be ready for your licence test.' },
+]
+
+export const faqs = [
+  {
+    q: 'Do I need any driving experience?',
+    a: 'No. Classes are one-to-one and paced to you, and bike and scooty lessons start from balance and control. Many students come to us nervous about driving.',
+  },
+  {
+    q: 'Which vehicles do you teach?',
+    a: 'Car, bike and scooty. Licence assistance is available with each.',
+  },
+  {
+    q: 'How many classes are in each course?',
+    a: 'Car courses are 15 or 18 classes, with about 4 km of driving per class. Bike and scooty courses are 12 classes of 30 minutes, three days a week on alternate days.',
+  },
+  {
+    q: 'How much does it cost?',
+    a: 'Scooty courses start at ₹3,600, bike at ₹4,200 and car at ₹4,999. The full package list is in the pricing section. An AC vehicle for car classes is ₹599 extra.',
+  },
+  {
+    q: 'Do you help with the learner’s and permanent licence?',
+    a: 'Yes. The “Complete Licence” and “With Endorsement” packages include the learner’s and permanent licence paperwork.',
+  },
+  {
+    q: 'When are classes held?',
+    a: 'Every day, 7:00 to 20:00. Tell us your preferred time when you enquire.',
+  },
+  {
+    q: 'Where are you located?',
+    a: 'Near Jayshree Post Office, Kolkata. Use the location link in the contact section for directions.',
+  },
+  {
+    q: 'How do I book?',
+    a: 'Call, WhatsApp, or fill in the booking form — it opens WhatsApp with your details filled in. We’ll confirm your timing from there.',
+  },
+]
+
+export const experienceOptions = ['Complete beginner', 'Some experience', 'Need confidence']
+export const timeOptions = ['Morning (7–12)', 'Afternoon (12–4)', 'Evening (4–8)', 'Flexible']
 
 export const courseOptions = [
   'Car — Without Licence',
@@ -205,3 +258,8 @@ export const courseOptions = [
   'Scooty — Without Licence',
   'Scooty — Complete Licence',
 ]
+
+export const whatsappLink = (text) =>
+  `https://wa.me/${business.whatsapp}${text ? `?text=${encodeURIComponent(text)}` : ''}`
+
+export const enquiryText = 'Hi RS Driving School, I’d like to enquire about driving lessons.'

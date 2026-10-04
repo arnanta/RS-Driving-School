@@ -1,5 +1,9 @@
-import { business } from '../data.js'
-import { IconPhone, IconWhatsapp } from './icons.jsx'
+import { business, heroChecks, pricing } from '../data.js'
+import { IconPhone, IconCheck } from './icons.jsx'
+
+const startingPrice = Math.min(
+  ...Object.values(pricing).flatMap((group) => group.plans.map((plan) => plan.price)),
+)
 
 function RoadBackdrop() {
   return (
@@ -63,42 +67,43 @@ export default function Hero() {
       <div className="hero-glow" aria-hidden="true" />
       <div className="container">
         <div className="hero-copy">
-          <span className="eyebrow">{business.location}</span>
+          <span className="eyebrow">Driving school near Jayashree Post Office, Behala</span>
           <h1>
-            <span className="accent-red">Learn today.</span>
+            <span className="accent-red">Learn to drive</span>
             <br />
-            <em>Drive tomorrow.</em>
+            <em>with confidence.</em>
           </h1>
           <p className="lede">
-            Patient, structured lessons in car, bike and scooty from {business.owner} — rated a
-            perfect {business.rating.toFixed(1)} stars by recent students, with licence paperwork
-            handled alongside your classes.
+            Car, bike &amp; scooty training in Kolkata with {business.owner} — patient one-to-one
+            lessons near Jayshree Post Office, packages from ₹{startingPrice.toLocaleString('en-IN')}.
           </p>
           <div className="hero-cta">
             <a className="btn btn-primary" href="#contact">
-              <IconPhone width="18" height="18" /> Book a Free Call
+              Book a Class
             </a>
-            <a
-              className="btn btn-whatsapp"
-              href={`https://wa.me/${business.whatsapp}?text=${encodeURIComponent('Hi RS Driving School, I want to know more about your classes.')}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <IconWhatsapp width="18" height="18" /> WhatsApp Us
+            <a className="btn btn-light" href={`tel:+91${business.phonePrimary}`}>
+              <IconPhone width="18" height="18" /> Call Now
             </a>
           </div>
+          <ul className="hero-checks">
+            {heroChecks.map((item) => (
+              <li key={item}>
+                <IconCheck width="16" height="16" /> {item}
+              </li>
+            ))}
+          </ul>
           <div className="hero-stats">
             <div className="hero-stat">
               <b>{business.rating.toFixed(1)}★</b>
               <span>Google rating</span>
             </div>
             <div className="hero-stat">
-              <b>3</b>
-              <span>Vehicle types taught</span>
+              <b>₹{startingPrice.toLocaleString('en-IN')}</b>
+              <span>Packages start at</span>
             </div>
             <div className="hero-stat">
-              <b>1st</b>
-              <span>Attempt pass, most students</span>
+              <b>6–5</b>
+              <span>Open daily</span>
             </div>
           </div>
         </div>
