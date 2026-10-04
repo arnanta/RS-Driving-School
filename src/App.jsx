@@ -6,6 +6,9 @@ import Pricing from './components/Pricing.jsx'
 import About from './components/About.jsx'
 import Reviews from './components/Reviews.jsx'
 import WhyChooseUs from './components/WhyChooseUs.jsx'
+import HowItWorks from './components/HowItWorks.jsx'
+import FAQ from './components/FAQ.jsx'
+import FloatingWhatsApp from './components/FloatingWhatsApp.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
 import MobileBar from './components/MobileBar.jsx'
@@ -21,14 +24,17 @@ export default function App() {
         <Hero />
         <TrustStrip />
         <Services />
+        <WhyChooseUs />
+        <HowItWorks />
         <Pricing />
         <About />
         <Reviews />
-        <WhyChooseUs />
+        <FAQ />
         <Contact />
       </main>
       <Footer />
       <MobileBar />
+      <FloatingWhatsApp />
     </>
   )
 }

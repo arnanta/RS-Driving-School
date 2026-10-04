@@ -1,8 +1,16 @@
 import { useState } from 'react'
-import { business, courseOptions } from '../data.js'
+import { business, courseOptions, experienceOptions, timeOptions, whatsappLink } from '../data.js'
 import { IconPhone, IconWhatsapp, IconPin, IconClock, IconCheck } from './icons.jsx'
 
-const EMPTY = { name: '', phone: '', course: courseOptions[0], message: '' }
+const EMPTY = {
+  name: '',
+  phone: '',
+  course: courseOptions[0],
+  experience: experienceOptions[0],
+  time: timeOptions[0],
+  area: '',
+  message: '',
+}
 
 export default function Contact() {
   const [form, setForm] = useState(EMPTY)
@@ -23,12 +31,15 @@ export default function Contact() {
       `Name: ${form.name.trim()}`,
       `Phone: ${form.phone.trim()}`,
       `Course: ${form.course}`,
+      `Experience: ${form.experience}`,
+      `Preferred time: ${form.time}`,
+      form.area.trim() ? `Area / pickup: ${form.area.trim()}` : null,
       form.message.trim() ? `Message: ${form.message.trim()}` : null,
     ]
       .filter(Boolean)
       .join('\n')
 
-    window.open(`https://wa.me/${business.whatsapp}?text=${encodeURIComponent(text)}`, '_blank', 'noreferrer')
+    window.open(whatsappLink(text), '_blank', 'noreferrer')
     setStatus({ ok: true, text: 'Opening WhatsApp with your details filled in — just hit send.' })
     setForm(EMPTY)
   }
@@ -60,7 +71,7 @@ export default function Contact() {
               <IconWhatsapp />
               <div>
                 <small>WhatsApp</small>
-                <a href={`https://wa.me/${business.whatsapp}`} target="_blank" rel="noreferrer">
+                <a href={whatsappLink()} target="_blank" rel="noreferrer">
                   Message us directly
                 </a>
               </div>
@@ -80,7 +91,7 @@ export default function Contact() {
             </div>
             <div className="contact-hours">
               <span>
-                <IconClock width="16" height="16" style={{ display: 'inline', marginRight: 6 }} />
+                <IconClock width="16" height="16" />
                 {business.hoursLabel}
               </span>
               <b>{business.hoursValue}</b>
@@ -94,12 +105,12 @@ export default function Contact() {
                 <input id="name" type="text" autoComplete="name" value={form.name} onChange={update('name')} required />
               </div>
               <div className="field">
-                <label htmlFor="phone">Phone number</label>
+                <label htmlFor="phone">Phone / WhatsApp</label>
                 <input id="phone" type="tel" autoComplete="tel" value={form.phone} onChange={update('phone')} required />
               </div>
             </div>
             <div className="field">
-              <label htmlFor="course">Course interested in</label>
+              <label htmlFor="course">What do you want to learn?</label>
               <select id="course" value={form.course} onChange={update('course')}>
                 {courseOptions.map((opt) => (
                   <option key={opt} value={opt}>
@@ -108,9 +119,35 @@ export default function Contact() {
                 ))}
               </select>
             </div>
+            <div className="field-row">
+              <div className="field">
+                <label htmlFor="experience">Experience level</label>
+                <select id="experience" value={form.experience} onChange={update('experience')}>
+                  {experienceOptions.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="field">
+                <label htmlFor="time">Preferred time</label>
+                <select id="time" value={form.time} onChange={update('time')}>
+                  {timeOptions.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="field">
+              <label htmlFor="area">Your area (optional)</label>
+              <input id="area" type="text" autoComplete="address-level2" value={form.area} onChange={update('area')} />
+            </div>
             <div className="field">
               <label htmlFor="message">Message (optional)</label>
-              <textarea id="message" value={form.message} onChange={update('message')} placeholder="Preferred timing, pickup location, anything else we should know…" />
+              <textarea id="message" value={form.message} onChange={update('message')} placeholder="Anything else we should know…" />
             </div>
 
             <button type="submit" className="btn btn-primary btn-block">
